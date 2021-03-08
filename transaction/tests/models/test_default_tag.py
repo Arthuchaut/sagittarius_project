@@ -15,7 +15,7 @@ class TestDefaultTag:
         ]
     )
     def test_create(self, name: str, icon: str) -> None:
-        '''Test the user_tag creation.
+        '''Test the default_tag creation.
         '''
 
         default_tag: DefaultTag = DefaultTag.objects.create(
