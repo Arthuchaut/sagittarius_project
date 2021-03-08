@@ -1,0 +1,1 @@
+from .user_tag import UserTag
