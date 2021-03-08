@@ -1,11 +1,12 @@
-from django.test import TestCase
+import pytest
 from user.models import User
 
 
-class UserTestCase(TestCase):
+class TestUser:
     '''The User model test class.
     '''
 
+    @pytest.mark.django_db(transaction=True)
     def test_create_user(self) -> None:
         '''Test the user creation.
         '''
@@ -17,6 +18,7 @@ class UserTestCase(TestCase):
 
         assert created_user and created_user == user_to_create
 
+    @pytest.mark.django_db(transaction=True)
     def test_create_superuser(self) -> None:
         '''Test the superuser creation.
         '''
