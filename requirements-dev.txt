@@ -3,6 +3,6 @@ pytest-django
 pytest-cov
 python-dotenv
 pip-tools
-black # Code formatter
+yapf # Code formatter
 mypy # Static typing analytizer
 pylint # Code analytizer
