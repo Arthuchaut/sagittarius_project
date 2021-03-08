@@ -2,19 +2,19 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class DefaultTag(models.Model):
-    '''The UserTag model class.
+class TransactionType(models.Model):
+    '''The TransactionType model class.
     
     Attributes:
-        name (models.CharField): The tag name.
-        icon (models.TextField): The icon binary content.
+        type (models.CharField): The type choice.
     '''
 
-    name: models.CharField = models.CharField(
-        _('user tag name'), max_length=150, unique=True
-    )
-    icon: models.TextField = models.TextField(
-        _('user tag icon binary'), blank=True, null=True
+    class Type(models.TextChoices):
+        INCOME: str = 'INCOME'
+        OUTCOME: str = 'OUTCOME'
+
+    type: models.CharField = models.CharField(
+        _('transation type'), max_length=7, choices=Type.choices, unique=True
     )
 
     class Meta:
@@ -28,6 +28,6 @@ class DefaultTag(models.Model):
         '''
 
         app_label: str = 'transaction'
-        db_table: str = 'default_tag'
-        verbose_name: str = _('default_tag')
-        verbose_name_plural: str = _('default_tags')
+        db_table: str = 'transaction_type'
+        verbose_name: str = _('transaction_type')
+        verbose_name_plural: str = _('transaction_types')

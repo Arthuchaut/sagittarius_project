@@ -12,7 +12,7 @@ class UserTag(models.Model):
     '''
 
     name: models.CharField = models.CharField(
-        _('user tag name'), max_length=150
+        _('user tag name'), max_length=150, unique=True
     )
     icon: models.TextField = models.TextField(
         _('user tag icon binary'), blank=True, null=True

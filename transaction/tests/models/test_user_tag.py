@@ -4,7 +4,7 @@ from transaction.models import UserTag
 
 
 class TestUserTag:
-    '''The User model test class.
+    '''The UserTag model test class.
     '''
 
     @pytest.mark.django_db(transaction=True)

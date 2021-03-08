@@ -3,7 +3,7 @@ from transaction.models import DefaultTag
 
 
 class TestDefaultTag:
-    '''The User model test class.
+    '''The DefauktTag model test class.
     '''
 
     @pytest.mark.django_db(transaction=True)
