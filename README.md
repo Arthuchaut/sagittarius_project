@@ -49,10 +49,16 @@ Then, install needed packages.
 pip install -r requirements.txt -r requirements-dev.txt
 ```
 
-:warning: **For production environment**, you must to install locked packages.
+:warning: **For production environment**, you must to install locked packages **only**!
 
 ```sh
 pip install -r requirements.lock
 ```
 
-...
+Now we need to deploy our models and populate our database with the basics data.
+
+```sh
+python manage.py migrate
+python manage.py loaddata transaction_dataset
+```
+

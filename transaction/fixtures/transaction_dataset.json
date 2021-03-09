@@ -1,0 +1,38 @@
+[
+    {
+        "model": "transaction.DefaultTag",
+        "fields": {
+            "name": "Housing"
+        }
+    },
+    {
+        "model": "transaction.DefaultTag",
+        "fields": {
+            "name": "Subscription"
+        }
+    },
+    {
+        "model": "transaction.DefaultTag",
+        "fields": {
+            "name": "Food"
+        }
+    },
+    {
+        "model": "transaction.DefaultTag",
+        "fields": {
+            "name": "Recreation"
+        }
+    },
+    {
+        "model": "transaction.TransactionType",
+        "fields": {
+            "type": "INCOME"
+        }
+    },
+    {
+        "model": "transaction.TransactionType",
+        "fields": {
+            "type": "OUTCOME"
+        }
+    }
+]
