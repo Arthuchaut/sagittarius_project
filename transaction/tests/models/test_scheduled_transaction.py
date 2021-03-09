@@ -4,7 +4,7 @@ from transaction.models import ScheduledTransaction, ScheduledFrequency, Transac
 
 
 class TestScheduledTransaction:
-    '''The ScheduledFrequency model test class.
+    '''The ScheduledTransaction model test class.
     '''
 
     @pytest.mark.django_db(transaction=True)
@@ -21,7 +21,7 @@ class TestScheduledTransaction:
         self, lambda_user: User, amount: float, has_trans_type: bool,
         has_frequency: bool
     ) -> None:
-        '''Test the scheduled_frequency creation.
+        '''Test the scheduled_transaction creation.
         '''
 
         trans_type: TransactionType = TransactionType.objects.create(

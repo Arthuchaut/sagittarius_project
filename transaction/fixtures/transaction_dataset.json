@@ -34,5 +34,29 @@
         "fields": {
             "type": "OUTCOME"
         }
+    },
+    {
+        "model": "transaction.ScheduledFrequency",
+        "fields": {
+            "frequency": "DAILY"
+        }
+    },
+    {
+        "model": "transaction.ScheduledFrequency",
+        "fields": {
+            "frequency": "WEEKLY"
+        }
+    },
+    {
+        "model": "transaction.ScheduledFrequency",
+        "fields": {
+            "frequency": "MONTHLY"
+        }
+    },
+    {
+        "model": "transaction.ScheduledFrequency",
+        "fields": {
+            "frequency": "YEARLY"
+        }
     }
 ]
