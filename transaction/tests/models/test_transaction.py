@@ -1,6 +1,8 @@
 import pytest
 from user.models import User
-from transaction.models import Transaction, TransactionType, UserTag, DefaultTag
+from transaction.models import (
+    Transaction, TransactionType, UserTag, DefaultTag
+)
 
 
 class TestTransaction:
@@ -9,58 +11,35 @@ class TestTransaction:
 
     @pytest.mark.django_db(transaction=True)
     @pytest.mark.parametrize(
-        'amount, trans_type_choice, user_tag_name, default_tag_name',
+        'amount, has_trans_type, has_user_tag, has_default_tag',
         [
-            (42.0, TransactionType.Type.INCOME, 'lambda user tag', None),
-            (42.0, TransactionType.Type.INCOME, None, 'lambda default tag'),
-            pytest.param(
-                42.0,
-                TransactionType.Type.INCOME,
-                'lambda user tag',
-                'lambda default tag',
-                marks=pytest.mark.xfail
-            ),
-            pytest.param(
-                42.0,
-                None,
-                None,
-                'lambda default tag',
-                marks=pytest.mark.xfail
-            ),
-            pytest.param(
-                None,
-                TransactionType.Type.INCOME,
-                None,
-                'lambda default tag',
-                marks=pytest.mark.xfail
-            ),
+            (42.0, True, True, False),
+            (42.0, True, False, True),
+            pytest.param(42.0, True, True, True, marks=pytest.mark.xfail),
+            pytest.param(42.0, False, False, True, marks=pytest.mark.xfail),
+            pytest.param(None, True, False, True, marks=pytest.mark.xfail),
         ],
     )
     def test_create(
         self,
         lambda_user: User,
         amount: float,
-        trans_type_choice: TransactionType.Type,
-        user_tag_name: str,
-        default_tag_name: str,
+        has_trans_type: bool,
+        has_user_tag: bool,
+        has_default_tag: bool,
     ) -> None:
         '''Test the transaction creation.
         '''
 
-        user_tag: UserTag = None
-        default_tag: DefaultTag = None
-        transaction_type: TransactionType = None
-
-        if user_tag_name:
-            user_tag = UserTag.objects.create(
-                name=user_tag_name, user=lambda_user
-            )
-        if default_tag_name:
-            default_tag = DefaultTag.objects.create(name=default_tag_name)
-        if trans_type_choice:
-            transaction_type = TransactionType.objects.create(
-                type=trans_type_choice
-            )
+        transaction_type: TransactionType = TransactionType.objects.create(
+            type=TransactionType.Type.INCOME
+        ) if has_trans_type else None
+        user_tag: UserTag = UserTag.objects.create(
+            name='Fake tag', user=lambda_user
+        ) if has_user_tag else None
+        default_tag: DefaultTag = DefaultTag.objects.create(
+            name='Fake tag'
+        ) if has_default_tag else None
 
         transaction: Transaction = Transaction.objects.create(
             amount=amount,
@@ -69,4 +48,5 @@ class TestTransaction:
             default_tag=default_tag,
             user=lambda_user,
         )
+
         assert transaction

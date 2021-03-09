@@ -9,6 +9,7 @@
   - [Requirements](#requirements)
   - [Setting up](#setting-up)
     - [Environment configuration](#environment-configuration)
+  - [Tests](#tests)
 
 ## Introduction
 
@@ -62,3 +63,11 @@ python manage.py migrate
 python manage.py loaddata transaction_dataset
 ```
 
+## Tests
+
+This project using `pytest`. So If we are in development environment, we just have to run the `pytest` command.  
+:warning: Ensure to be in `venv` first!
+
+```sh
+pytest
+```
